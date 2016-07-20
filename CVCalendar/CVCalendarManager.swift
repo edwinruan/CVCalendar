@@ -19,7 +19,6 @@ public final class CVCalendarManager {
     // MARK: - Private properties
     private var components: NSDateComponents
     private unowned let calendarView: CalendarView
-    public var selectedDate = NSDate()
     public var calendar: NSCalendar
 
     // MARK: - Public properties
@@ -46,9 +45,8 @@ public final class CVCalendarManager {
             let units = (yearUnit.union(monthUnit).union(weekUnit))
             let components = calendar.components(units, fromDate: date)
             
-            let dayComponent = calendar.component(dayUnit, fromDate: selectedDate)
-            components.day = dayComponent
-
+            // Start of the month.
+            components.day = 1
             let monthStartDate = calendar.dateFromComponents(components)!
 
             // End of the month.
