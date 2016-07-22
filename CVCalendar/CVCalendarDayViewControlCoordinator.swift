@@ -91,6 +91,30 @@ extension CVCalendarDayViewControlCoordinator {
             }
         }
     }
+    
+    public func performDayViewSingleSelectionNotAnimate(dayView: DayView) {
+        selectionSet.insert(dayView)
+        
+        if selectionSet.count > 1 {
+            //            let count = selectionSet.count-1
+            for dayViewInQueue in selectionSet {
+                if dayView != dayViewInQueue {
+                    if dayView.calendarView != nil {
+                        presentDeselectionOnDayView(dayViewInQueue)
+                    }
+                    
+                }
+                
+            }
+        }
+        
+        if let _ = animator {
+            if selectedDayView != dayView {
+                selectedDayView = dayView
+                //presentSelectionOnDayView(dayView)
+            }
+        }
+    }
 
     public func performDayViewRangeSelection(dayView: DayView) {
         print("Day view range selection found")
