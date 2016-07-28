@@ -361,7 +361,6 @@ extension CVCalendarMonthContentViewController {
                 }
             }
         }
-
         if let presentedMonthView = monthViews[presented] {
             self.presentedMonthView = presentedMonthView
             let lastPresentedDate = calendarView.presentedDate.convertedDate()
@@ -371,38 +370,21 @@ extension CVCalendarMonthContentViewController {
                 presentedMonthView.date = calendarView.contentController.dateBeforeDate(lastPresentedDate!)
             }
             calendarView.presentedDate = Date(date: presentedMonthView.date)
-
-            if let presentedMonthView = monthViews[presented] {
-                self.presentedMonthView = presentedMonthView
-                let lastPresentedDate = calendarView.presentedDate.convertedDate()
-                if direction == .Left  {
-                    presentedMonthView.date = calendarView.contentController.dateAfterDate(lastPresentedDate!)
-                } else if direction == .Right {
-                    presentedMonthView.date = calendarView.contentController.dateBeforeDate(lastPresentedDate!)
+            let current = Date(date: NSDate())
+            let presented = Date(date: presentedMonthView.date)
+            if presented.convertedDate()!.compare(current.convertedDate()!) == NSComparisonResult.OrderedAscending {
+                if matchedMonths(current, presented) {
+                    // past day in current month
+                    selectDayViewWithDay(Date(date: presentedMonthView.date).day, inMonthView: presentedMonthView)
+                } else {
+                    // past day not in current month
+                    selectDayViewWithDayNoAnimate(Date(date: presentedMonthView.date).day, inMonthView: presentedMonthView)
                 }
-                
-                calendarView.presentedDate = Date(date: presentedMonthView.date)
-                
-                if let selected = coordinator.selectedDayView,
-                    selectedMonthView = selected.monthView where
-                    !matchedMonths(Date(date: selectedMonthView.date),
-                                   Date(date: presentedMonthView.date)) &&
-                        calendarView.shouldAutoSelectDayOnMonthChange {
-                    let current = Date(date: NSDate())
-                    let presented = Date(date: presentedMonthView.date)
-                    if presented.convertedDate()!.compare(current.convertedDate()!) == NSComparisonResult.OrderedAscending {
-                        if matchedMonths(current, presented) {// past day in current month
-                            selectDayViewWithDay(Date(date: presentedMonthView.date).day, inMonthView: presentedMonthView)
-                        } else {// past day not in current month
-                            selectDayViewWithDayNoAnimate(Date(date: presentedMonthView.date).day, inMonthView: presentedMonthView)
-                        }
-                    } else {//future date
-                        selectDayViewWithDay(Date(date: presentedMonthView.date).day, inMonthView: presentedMonthView)
-                    }
-                }
+            } else {
+                //future date
+                selectDayViewWithDay(Date(date: presentedMonthView.date).day, inMonthView: presentedMonthView)
             }
         }
-
     }
     
     public func selectDayViewWithDayNoAnimate(day: Int, inMonthView monthView: CVCalendarMonthView)  {
