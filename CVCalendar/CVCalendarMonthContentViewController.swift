@@ -443,13 +443,11 @@ extension CVCalendarMonthContentViewController {
             case .Right: scrolledRight()
             default: break
             }
+            updateSelection()
+            updateLayoutIfNeeded()
+            pageLoadingEnabled = true
+            direction = .None
         }
-
-        updateSelection()
-        updateLayoutIfNeeded()
-        pageLoadingEnabled = true
-        direction = .None
-
     }
 
     public func scrollViewDidEndDragging(scrollView: UIScrollView,
