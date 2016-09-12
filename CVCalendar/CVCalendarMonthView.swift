@@ -142,7 +142,7 @@ extension CVCalendarMonthView {
                     self.addSubview(interactiveView)
                 } else {
                     self.interactiveView = UIView(frame: self.bounds)
-                    self.interactiveView.backgroundColor = .clear()
+                    self.interactiveView.backgroundColor = .clear
 
                     let tapRecognizer = UITapGestureRecognizer(target: self,
                         action: #selector(CVCalendarMonthView.didTouchInteractiveView(_:)))

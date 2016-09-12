@@ -97,8 +97,8 @@ public final class CVCalendarWeekView: UIView {
                                     break
                                 }
                             } else if value < 10 {
-                                if self.index == manager?.monthDateRange(self.monthView!.date!)
-                                    .countOfWeeks - 1 {
+                                if self.index == (manager?.monthDateRange(self.monthView!.date!)
+                                    .countOfWeeks)! - 1 {
                                         result = weekdaysOut
                                         break
                                 }

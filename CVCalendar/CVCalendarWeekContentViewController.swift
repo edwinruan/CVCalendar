@@ -137,11 +137,11 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
         if dayView.isOut && calendarView.shouldScrollOnOutDayViewSelection {
             if dayView.date.day > 20 {
                 let presentedDate = dayView.monthView.date
-                calendarView.presentedDate = Date(date: self.dateBeforeDate(presentedDate))
+                calendarView.presentedDate = Date(date: self.dateBeforeDate(presentedDate!))
                 presentPreviousView(dayView)
             } else {
                 let presentedDate = dayView.monthView.date
-                calendarView.presentedDate = Date(date: self.dateAfterDate(presentedDate))
+                calendarView.presentedDate = Date(date: self.dateAfterDate(presentedDate!))
                 presentNextView(dayView)
             }
         }
@@ -349,7 +349,7 @@ extension CVCalendarWeekContentViewController {
     public func getFollowingMonth(_ date: Foundation.Date) -> MonthView {
         let calendarManager = calendarView.manager
         let firstDate = calendarManager?.monthDateRange(date).monthStartDate
-        let components = Manager.componentsForDate(firstDate)
+        var components = Manager.componentsForDate(firstDate!)
 
         components.month += 1
 
@@ -365,7 +365,7 @@ extension CVCalendarWeekContentViewController {
 
     public func getPreviousMonth(_ date: Foundation.Date) -> MonthView {
         let firstDate = calendarView.manager.monthDateRange(date).monthStartDate
-        let components = Manager.componentsForDate(firstDate)
+        var components = Manager.componentsForDate(firstDate)
 
         components.month -= 1
 

@@ -47,7 +47,7 @@ public final class CVDate: NSObject {
 extension CVDate {
     public func convertedDate() -> Foundation.Date? {
         let calendar = Calendar.current
-        let comps = Manager.componentsForDate(Foundation.Date())
+        var comps = Manager.componentsForDate(Foundation.Date())
 
         comps.year = year
         comps.month = month

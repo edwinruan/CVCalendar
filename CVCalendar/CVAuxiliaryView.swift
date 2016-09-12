@@ -40,7 +40,7 @@ public final class CVAuxiliaryView: UIView {
         fillColor = UIColor.colorFromCode(0xe74c3c)
 
         layer.cornerRadius = 5
-        backgroundColor = .clear()
+        backgroundColor = .clear
     }
 
     public override func didMoveToSuperview() {
@@ -116,7 +116,7 @@ extension CVAuxiliaryView {
         let path = CGMutablePath()
         CGPathAddPath(path, nil, circlePath().cgPath)
         CGPathAddPath(path, nil, flag.cgPath)
-
+        
         return UIBezierPath(cgPath: path)
     }
 

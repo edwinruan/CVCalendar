@@ -30,13 +30,13 @@ public final class CVCalendarViewAppearance: NSObject {
     public var dayLabelWeekdaySelectedFont: UIFont? = UIFont(name: "Avenir-Heavy", size: 18)
 
     /// Default text color.
-    public var dayLabelWeekdayInTextColor: UIColor? = .black()
-    public var dayLabelWeekdayOutTextColor: UIColor? = .gray()
-    public var dayLabelWeekdayHighlightedTextColor: UIColor? = .white()
-    public var dayLabelWeekdaySelectedTextColor: UIColor? = .white()
-    public var dayLabelPresentWeekdayTextColor: UIColor? = .red()
-    public var dayLabelPresentWeekdayHighlightedTextColor: UIColor? = .white()
-    public var dayLabelPresentWeekdaySelectedTextColor: UIColor? = .white()
+    public var dayLabelWeekdayInTextColor: UIColor? = .black
+    public var dayLabelWeekdayOutTextColor: UIColor? = .gray
+    public var dayLabelWeekdayHighlightedTextColor: UIColor? = .white
+    public var dayLabelWeekdaySelectedTextColor: UIColor? = .white
+    public var dayLabelPresentWeekdayTextColor: UIColor? = .red
+    public var dayLabelPresentWeekdayHighlightedTextColor: UIColor? = .white
+    public var dayLabelPresentWeekdaySelectedTextColor: UIColor? = .white
 
     /// Default text size.
     public var dayLabelWeekdayTextSize: CGFloat? = 18
@@ -60,7 +60,7 @@ public final class CVCalendarViewAppearance: NSObject {
 
 
     // Default dot marker color.
-    public var dotMarkerColor: UIColor? = .white()
+    public var dotMarkerColor: UIColor? = .white
 
     public weak var delegate: CVCalendarViewAppearanceDelegate? {
         didSet {
