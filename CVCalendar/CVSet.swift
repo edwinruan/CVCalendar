@@ -84,6 +84,6 @@ extension CVSet: Sequence {
             (power < self.count) ? self.storage[power] : nil
         }
         power+=1
-        return AnyIterator(body: nextClosure)
+        return AnyIterator.init(nextClosure)
     }
 }
