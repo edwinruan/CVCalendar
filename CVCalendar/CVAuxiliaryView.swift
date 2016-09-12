@@ -114,8 +114,8 @@ extension CVAuxiliaryView {
         flag.addLine(to: CGPoint(x: bounds.width / 2, y: bounds.height / 2 + radius))
 
         let path = CGMutablePath()
-        CGPathAddPath(path, nil, circlePath().cgPath)
-        CGPathAddPath(path, nil, flag.cgPath)
+        path.addPath(circlePath().cgPath)
+        path.addPath(flag.cgPath)
         
         return UIBezierPath(cgPath: path)
     }
@@ -128,8 +128,8 @@ extension CVAuxiliaryView {
         flag.addLine(to: CGPoint(x: bounds.width / 2, y: bounds.height / 2 - radius))
 
         let path = CGMutablePath()
-        CGPathAddPath(path, nil, circlePath().cgPath)
-        CGPathAddPath(path, nil, flag.cgPath)
+        path.addPath(circlePath().cgPath)
+        path.addPath(flag.cgPath)
 
         return UIBezierPath(cgPath: path)
     }

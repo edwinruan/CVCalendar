@@ -14,7 +14,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
     public override init(calendarView: CalendarView, frame: CGRect) {
         monthViews = [Identifier : MonthView]()
         super.init(calendarView: calendarView, frame: frame)
-        initialLoad(presentedMonthView.date as Date)
+        initialLoad(presentedMonthView.date as Foundation.Date)
     }
 
     public init(calendarView: CalendarView, frame: CGRect, presentedDate: Foundation.Date) {
@@ -91,7 +91,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
                 replaceMonthView(presentedMonth, withIdentifier: previous, animatable: false)
                 replaceMonthView(followingMonth, withIdentifier: presented, animatable: true)
 
-                insertMonthView(getFollowingMonth(followingMonth.date as Date),
+                insertMonthView(getFollowingMonth(followingMonth.date as Foundation.Date),
                                 withIdentifier: following)
                 self.calendarView.delegate?.didShowNextMonthView?(followingMonth.date)
             }
@@ -107,7 +107,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
                 replaceMonthView(previous, withIdentifier: self.presented, animatable: true)
                 replaceMonthView(presented, withIdentifier: following, animatable: false)
 
-                insertMonthView(getPreviousMonth(previous.date as Date), withIdentifier: self.previous)
+                insertMonthView(getPreviousMonth(previous.date as Foundation.Date), withIdentifier: self.previous)
                 self.calendarView.delegate?.didShowPreviousMonthView?(previous.date)
             }
         }
@@ -173,7 +173,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
                 self.updateLayoutIfNeeded()
             }) { _ in
                 extra.removeFromSuperview()
-                self.insertMonthView(self.getPreviousMonth(previous.date as Date),
+                self.insertMonthView(self.getPreviousMonth(previous.date as Foundation.Date),
                                      withIdentifier: self.previous)
                 self.updateSelection()
                 self.presentationEnabled = true
@@ -210,7 +210,7 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
                 self.updateLayoutIfNeeded()
             }) { _ in
                 extra.removeFromSuperview()
-                self.insertMonthView(self.getFollowingMonth(following.date as Date),
+                self.insertMonthView(self.getFollowingMonth(following.date as Foundation.Date),
                                      withIdentifier: self.following)
                 self.updateSelection()
                 self.presentationEnabled = true
@@ -281,7 +281,7 @@ extension CVCalendarMonthContentViewController {
         let firstDate = calendarView.manager.monthDateRange(date).monthStartDate
         var components = Manager.componentsForDate(firstDate)
 
-        components.month += 1
+        components.month! += 1
 
         let newDate = Calendar.current.date(from: components)!
         let frame = scrollView.bounds
@@ -296,7 +296,7 @@ extension CVCalendarMonthContentViewController {
         let firstDate = calendarView.manager.monthDateRange(date).monthStartDate
         var components = Manager.componentsForDate(firstDate)
 
-        components.month -= 1
+        components.month! -= 1
 
         let newDate = Calendar.current.date(from: components)!
         let frame = scrollView.bounds

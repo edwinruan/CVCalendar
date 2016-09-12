@@ -35,9 +35,9 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
     // MARK: - Load & Reload
 
     public func initialLoad(_ date: Foundation.Date) {
-        monthViews[previous] = getPreviousMonth(presentedMonthView.date as Date)
+        monthViews[previous] = getPreviousMonth(presentedMonthView.date as Foundation.Date)
         monthViews[presented] = presentedMonthView
-        monthViews[following] = getFollowingMonth(presentedMonthView.date as Date)
+        monthViews[following] = getFollowingMonth(presentedMonthView.date as Foundation.Date)
 
         presentedMonthView.mapDayViews { dayView in
             if self.matchedDays(dayView.date, Date(date: date)) {
@@ -308,7 +308,7 @@ extension CVCalendarWeekContentViewController {
         } else if let previousMonthView = monthViews[previous] {
             monthViews[following] = monthViews[presented]
             monthViews[presented] = monthViews[previous]
-            monthViews[previous] = getPreviousMonth(previousMonthView.date as Date)
+            monthViews[previous] = getPreviousMonth(previousMonthView.date as Foundation.Date)
 
             presentedMonthView = monthViews[previous]!
         }
@@ -334,7 +334,7 @@ extension CVCalendarWeekContentViewController {
         } else if let followingMonthView = monthViews[following] {
             monthViews[previous] = monthViews[presented]
             monthViews[presented] = monthViews[following]
-            monthViews[following] = getFollowingMonth(followingMonthView.date as Date)
+            monthViews[following] = getFollowingMonth(followingMonthView.date as Foundation.Date)
 
             presentedMonthView = monthViews[following]!
         }
@@ -351,7 +351,7 @@ extension CVCalendarWeekContentViewController {
         let firstDate = calendarManager?.monthDateRange(date).monthStartDate
         var components = Manager.componentsForDate(firstDate!)
 
-        components.month += 1
+        components.month! += 1
 
         let newDate = Calendar.current.date(from: components)!
         let monthView = MonthView(calendarView: calendarView, date: newDate)
@@ -367,7 +367,7 @@ extension CVCalendarWeekContentViewController {
         let firstDate = calendarView.manager.monthDateRange(date).monthStartDate
         var components = Manager.componentsForDate(firstDate)
 
-        components.month -= 1
+        components.month! -= 1
 
         let newDate = Calendar.current.date(from: components)!
         let monthView = MonthView(calendarView: calendarView, date: newDate)
